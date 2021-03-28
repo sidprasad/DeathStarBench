@@ -15,6 +15,13 @@ services:
 #      - 10001:9090
     restart: always
     entrypoint: UniqueIdService
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  unique-id.service
 
   movie-id-service:
     image: yg397/media-microservices
@@ -37,6 +44,13 @@ services:
 #    ports:
 #      - 27018:27017
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  movie-id.mongodb
 
   movie-id-memcached:
     image: memcached
@@ -44,6 +58,13 @@ services:
 #    ports:
 #      - 11212:11211
     restart: always
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  movie-id.memcache
+    links:
+      - fluentd
 
   text-service:
     image: yg397/media-microservices
@@ -52,6 +73,13 @@ services:
 #      - 10003:9090
     restart: always
     entrypoint: TextService
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  text.service
+    links:
+      - fluentd
 
   rating-service:
     image: yg397/media-microservices
@@ -59,7 +87,14 @@ services:
 #    ports:
 #      - 10004:9090
     restart: always
+    links:
+      - fluentd
     entrypoint: RatingService
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  rating.service
 
   rating-redis:
     image: redis
@@ -67,6 +102,13 @@ services:
 #    ports:
 #      - 6382:6379
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  rating.redis
 
   user-service:
     image: yg397/media-microservices
@@ -75,6 +117,13 @@ services:
 #      - 10005:9090
     restart: always
     entrypoint: UserService
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  user.service
 
   user-mongodb:
     image: mongo
@@ -82,6 +131,13 @@ services:
 #    ports:
 #      - 27019:27017
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  user.mongodb
 
   user-memcached:
     image: memcached
@@ -89,6 +145,13 @@ services:
 #    ports:
 #      - 11213:11211
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  user.memcache
 
   compose-review-service:
     image: yg397/media-microservices
@@ -97,6 +160,13 @@ services:
 #      - 10006:9090
     restart: always
     entrypoint: ComposeReviewService
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  composereview.service
 
   compose-review-memcached:
     image: memcached
@@ -104,6 +174,13 @@ services:
 #    ports:
 #      - 11214:11211
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  composereview.memcache
 
   review-storage-service:
     image: yg397/media-microservices
@@ -111,7 +188,14 @@ services:
 #    ports:
 #      - 10007:9090
     restart: always
+    links:
+      - fluentd
     entrypoint: ReviewStorageService
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  reviewstorage.service
 
   review-storage-mongodb:
     image: mongo
@@ -119,6 +203,13 @@ services:
 #    ports:
 #      - 27020:27017
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  reviewstorage.mongodb
 
   review-storage-memcached:
     image: memcached
@@ -126,6 +217,13 @@ services:
 #    ports:
 #      - 11215:11211
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  reviewstorage.memcache
 
   user-review-service:
     image: yg397/media-microservices
@@ -133,7 +231,14 @@ services:
 #    ports:
 #      - 10008:9090
     restart: always
+    links:
+      - fluentd
     entrypoint: UserReviewService
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  userreview.service
 
   user-review-mongodb:
     image: mongo
@@ -141,6 +246,13 @@ services:
 #    ports:
 #      - 27021:27017
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  userreview.mongodb
 
   user-review-redis:
     image: redis
@@ -148,6 +260,13 @@ services:
 #    ports:
 #      - 6381:6379
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  userreview.redis
 
   movie-review-service:
     image: yg397/media-microservices
@@ -155,7 +274,14 @@ services:
 #    ports:
 #      - 10009:9090
     restart: always
+    links:
+      - fluentd
     entrypoint: MovieReviewService
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  moviereview.service
 
   movie-review-mongodb:
     image: mongo
@@ -163,6 +289,13 @@ services:
     ports:
       - 27022:27017
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  moviereview.mongodb
 
   movie-review-redis:
     image: redis
@@ -170,6 +303,13 @@ services:
 #    ports:
 #      - 6380:6379
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  moviereview.redis
 
   nginx-web-server:
     image: yg397/openresty-thrift:xenial
@@ -177,11 +317,18 @@ services:
     ports:
       - 8080:8080
     restart: always
+    links:
+      - fluentd
     volumes:
       - ./nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
       - ./nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
       - ./nginx-web-server/jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json
       - ./gen-lua:/gen-lua
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  frontend.server
 
   cast-info-service:
     image: yg397/media-microservices
@@ -204,6 +351,13 @@ services:
 #    ports:
 #      - 27024:27017
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  castinfo.mongodb
 
   cast-info-memcached:
     image: memcached
@@ -211,6 +365,13 @@ services:
 #    ports:
 #      - 11219:11211
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  moviereview.memcached
 
   plot-service:
     image: yg397/media-microservices
@@ -219,6 +380,13 @@ services:
 #      - 10011:9090
     restart: always
     entrypoint: PlotService
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  plot.service
 
   plot-mongodb:
     image: mongo
@@ -240,6 +408,13 @@ services:
 #    ports:
 #      - 11220:11211
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  plot.memcached
 
   movie-info-service:
     image: yg397/media-microservices
@@ -247,7 +422,14 @@ services:
 #    ports:
 #      - 10012:9090
     restart: always
+    links:
+      - fluentd
     entrypoint: MovieInfoService
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  movieinfo.service
 
   movie-info-mongodb:
     image: mongo
@@ -255,6 +437,13 @@ services:
 #    ports:
 #      - 27026:27017
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  movieinfo.mongodb
 
   movie-info-memcached:
     image: memcached
@@ -262,7 +451,15 @@ services:
 #    ports:
 #      - 11221:11211
     restart: always
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: :24224
+        tag:  movieinfo.memcached
 
+  ### Tracing ##########################
   jaeger:
     image: jaegertracing/all-in-one:latest
     hostname: jaeger
@@ -279,6 +476,8 @@ services:
 
 
   ######  For log collection #######
+
+  # FLuentD: Log Aggregator collects, transforms, and ships log data to the Elasticsearch service.
   fluentd:
     build: ./fluentd
     volumes:
@@ -289,6 +488,7 @@ services:
       - "24224:24224"
       - "24224:24224/udp"
 
+  # Elasticsearch is a real-time, distributed, and scalable search engine which allows for full-text and structured search
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
     expose:
@@ -297,8 +497,8 @@ services:
       - "9200:9200"
     environment:
       - "discovery.type=single-node"
-    
 
+  # Query + Viz frontend for elasticsearch.
   kibana:
     image: kibana:7.2.0
     links:

@@ -18,6 +18,7 @@
    -    It's a good chance to learn how Kibana/Elasticsearch deals with JOINs.
        - https://stackoverflow.com/questions/22611049/join-query-in-elasticsearch
        - https://www.elastic.co/guide/en/elasticsearch/reference/current/joining-queries.html
+- [] Start playing with the fluentd configuration to tune log aggregation, make this look like a 'real' log aggregator.
 
 
 ## Concretely Generating Workloads
@@ -27,3 +28,10 @@ Had to do some work in getting this up and running -- am still seeing errors in 
 ```
 python3 scripts/write_movie_info.py -c ./datasets/tmdb/casts.json -m ./datasets/tmdb/movies.json && scripts/register_users.sh && scripts/register_movies.sh
 ```
+
+- Kibana should now be available on `http://localhost:5601/`, but may take a while to be ready.
+    - Use somethign like `fluentd*` as your index pattern. 
+
+- Dependency chart : 
+    - Liveness : Most media services -> FLuentD
+    - Readiness : FluentD -> Elasticsearch, Kibana -> Elasticsearch
