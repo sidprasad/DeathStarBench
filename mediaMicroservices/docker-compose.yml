@@ -29,7 +29,7 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: localhost:24224
-        tag: httpd.access
+        #tag: httpd.access
 
   movie-id-mongodb:
     image: mongo
@@ -196,7 +196,7 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: localhost:24224
-        tag: httpd.access
+        #tag: httpd.access
 
   cast-info-mongodb:
     image: mongo
@@ -232,7 +232,7 @@ services:
       driver: "fluentd"
       options:
         fluentd-address: localhost:24224
-        tag: httpd.access
+        #tag: httpd.access
 
   plot-memcached:
     image: memcached
