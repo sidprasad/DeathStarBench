@@ -28,8 +28,8 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: localhost:24224
-        #tag: httpd.access
+        fluentd-address: :24224
+        tag: movieid.service
 
   movie-id-mongodb:
     image: mongo
@@ -195,8 +195,8 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: localhost:24224
-        #tag: httpd.access
+        fluentd-address: :24224 # should i make this fliuentd instead of localhost?
+        tag: castinfo.service
 
   cast-info-mongodb:
     image: mongo
@@ -231,8 +231,8 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: localhost:24224
-        #tag: httpd.access
+        fluentd-address: :24224
+        tag: plot.mongodb
 
   plot-memcached:
     image: memcached
